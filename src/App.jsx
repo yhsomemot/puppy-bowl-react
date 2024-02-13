@@ -17,6 +17,19 @@ function App() {
     getPlayer(playerId).then(setPlayer);
   }
 
+  function handlePlayerDelete(playerId) {
+    deletePlayer(playerId).then(() => {
+      getPlayers().then((players) => {
+        setPlayers(players);
+      });
+    });
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    const formData = newFormData(evt.target);
+    
+  }
   return (
     <>
       <h1>Puppy Bowl</h1>
