@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { getPlayers, getPlayer } from "./api";
+import { getPlayers, getPlayer, deletePlayer } from "./api";
 import { Player } from "./components/Player";
 import { PlayerDetails } from "./components/PlayerDetails";
 
@@ -50,7 +50,8 @@ function App() {
             return (
               <Player key={player.id} 
               player={player} 
-              onClick={handlePlayerClick} 
+              onClick={handlePlayerClick}
+              onDelete={handlePlayerDelete} 
               />
             );
           })}

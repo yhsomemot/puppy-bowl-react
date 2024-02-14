@@ -1,4 +1,4 @@
-export function Player({ player, onClick }) {
+export function Player({ player, onClick, onDelete }) {
 
     return (
         <tr key={player.id}>
@@ -9,6 +9,7 @@ export function Player({ player, onClick }) {
                 <button onClick={() => onClick(player.id)}>
                     View Player
                 </button>
+                <button onClick={() => onDelete(player.id)}>Delete</button>
             </td>
         </tr>
     );
