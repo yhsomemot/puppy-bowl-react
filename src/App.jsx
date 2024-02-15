@@ -3,11 +3,13 @@ import "./App.css";
 import { getPlayers, getPlayer, deletePlayer, createPlayer } from "./api";
 import { Player } from "./components/Player";
 import { PlayerDetails } from "./components/PlayerDetails";
+import { PlayerForm } from "./components/PlayerForm";
 
 
 function App() {
   const [players, setPlayers] = useState([]);
   const [player, setPlayer] = useState({});
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     // getPlayers().then(setPlayers);
@@ -38,20 +40,20 @@ function App() {
         setPlayers(players);
       });
     })
+  }
 
+  function handleFilter (evt) {
+    setFilter(evt.target.value);
   }
 
   return (
     <>
       <h1>Puppy Bowl</h1>
       <PlayerDetails player={player} />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input type="text" name="name" />
-        <label htmlFor="breed">Breed:</label>
-        <input type="text" name="breed" />
-        <button type="submit">Add Player</button>
-      </form>
+      <PlayerForm player={player} onSubmit={handleSubmit} />
+
+      <label htmlFor="filter">Search:</label>
+      <input type="text" name="filter" value={filter} onChange={handleFilter} />
       <table>
         <thead>
           <tr>
@@ -61,15 +63,17 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {players.map((player) => {
-            return (
-              <Player key={player.id}
-                player={player}
-                onClick={handlePlayerClick}
-                onDelete={handlePlayerDelete}
-              />
-            );
-          })}
+          {players
+            .filter((player) => player.name.toLowerCase().includes(filter.toLowerCase()))
+            .map((player) => {
+              return (
+                <Player key={player.id}
+                  player={player}
+                  onClick={handlePlayerClick}
+                  onDelete={handlePlayerDelete}
+                />
+              );
+            })}
         </tbody>
       </table>
     </>
