@@ -1,8 +1,8 @@
 
-export function PlayerForm({ handleSubmit }) {
+export function PlayerForm({ onSubmit }) {
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
             <label htmlFor="name">Name:</label>
             <input type="text" name="name" />
             <label htmlFor="breed">Breed:</label>

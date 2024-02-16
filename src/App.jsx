@@ -32,7 +32,6 @@ function App() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    debugger
     const formData = new FormData(evt.target);
     const newPlayer = Object.fromEntries(formData.entries());
     createPlayer(newPlayer).then(() => {
