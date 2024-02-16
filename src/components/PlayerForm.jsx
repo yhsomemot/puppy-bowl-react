@@ -1,8 +1,8 @@
 
-export function PlayerForm({ player, onSubmit }) {
+export function PlayerForm({ handleSubmit }) {
     
     return (
-        <form onSubmit={() => onSubmit(player.evt.target)}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name:</label>
             <input type="text" name="name" />
             <label htmlFor="breed">Breed:</label>

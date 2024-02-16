@@ -30,6 +30,7 @@ export async function createPlayer(player) {
             body: JSON.stringify(player),
         });
         const result = await response.json();
+        console.log(result);
         return result.data.newPlayer;
     } catch (error) {
         console.error(error);
