@@ -34,7 +34,6 @@ function App() {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     const newPlayer = Object.fromEntries(formData.entries());
-    console.log(newPlayer)
     createPlayer(newPlayer).then(() => {
       getPlayers().then((players) => {
         setPlayers(players);
@@ -50,7 +49,13 @@ function App() {
     <>
       <h1>Puppy Bowl</h1>
       <PlayerDetails player={player} />
-      <PlayerForm player={player} onSubmit={handleSubmit} />
+      <form onSubmit= {handleSubmit}>
+            <label htmlFor="name">Name:</label>
+            <input type="text" name="name" />
+            <label htmlFor="breed">Breed:</label>
+            <input type="text" name="breed" />
+            <button type="submit">Add Player</button>
+        </form>
 
       <label htmlFor="filter">Search:</label>
       <input type="text" name="filter" value={filter} onChange={handleFilter} />
